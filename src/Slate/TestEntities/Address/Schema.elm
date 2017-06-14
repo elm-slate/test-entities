@@ -1,16 +1,24 @@
 module Slate.TestEntities.Address.Schema
     exposing
-        ( schema
+        ( entityName
+        , schema
         , properties
         )
 
 {-|
     Address Schema.
 
-@docs schema , properties
+@docs entityName, schema , properties
 -}
 
 import Slate.Common.Schema exposing (..)
+
+
+{-| Entity name
+-}
+entityName : String
+entityName =
+    "Address"
 
 
 {-|
@@ -18,7 +26,7 @@ import Slate.Common.Schema exposing (..)
 -}
 schema : EntitySchema
 schema =
-    { entityName = "Address"
+    { entityName = entityName
     , properties = properties
     }
 

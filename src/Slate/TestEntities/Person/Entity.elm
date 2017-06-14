@@ -4,6 +4,7 @@ module Slate.TestEntities.Person.Entity
         , FragmentDict
         , Entity
         , Name
+        , entityName
         , defaultFragment
         , default
         , fragmentEncode
@@ -14,7 +15,7 @@ module Slate.TestEntities.Person.Entity
 {-|
     Entity Entity.
 
-@docs Fragment , FragmentDict , Entity , Name , defaultFragment , default , fragmentEncode , fragmentDecode , mutate
+@docs Fragment , FragmentDict , Entity , Name , entityName, defaultFragment , default , fragmentEncode , fragmentDecode , mutate
 -}
 
 import Dict exposing (..)
@@ -49,6 +50,13 @@ type alias Fragment =
 -}
 type alias FragmentDict =
     EntityDict Fragment
+
+
+{-| Entity name
+-}
+entityName : String
+entityName =
+    "Person"
 
 
 {-| Starting point for all Entity Fragments
