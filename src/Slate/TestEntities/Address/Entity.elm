@@ -11,9 +11,11 @@ module Slate.TestEntities.Address.Entity
         )
 
 {-|
+
     Entity Entity.
 
 @docs Fragment , FragmentDict , Entity , defaultFragment , default , fragmentEncode , fragmentDecode , mutate
+
 -}
 
 import Json.Encode as JE exposing (..)
@@ -43,7 +45,7 @@ type alias FragmentDict =
 
 
 {-| Starting point for all Entity Fragments
-    since events are applied one at a time to build the final subSet entity
+since events are applied one at a time to build the final subSet entity
 -}
 defaultFragment : Fragment
 defaultFragment =
@@ -80,6 +82,7 @@ default =
 
 
 {-|
+
     Encode fragment.
 -}
 fragmentEncode : Fragment -> String
@@ -95,6 +98,7 @@ fragmentEncode address =
 
 
 {-|
+
     Decode fragment.
 -}
 fragmentDecode : String -> Result String Fragment
@@ -110,11 +114,15 @@ fragmentDecode json =
 
 
 {-|
+
     Mutate the Fragment based on an event.
 -}
 mutate : MutateFunction Fragment
-mutate event entity =
+mutate eventRecord entity =
     let
+        event =
+            eventRecord.event
+
         setStreet value entity =
             { entity | street = value }
 

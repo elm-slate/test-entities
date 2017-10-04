@@ -13,9 +13,11 @@ module Slate.TestEntities.Person.Entity
         )
 
 {-|
+
     Entity Entity.
 
 @docs Fragment , FragmentDict , Entity , Name , entityName, defaultFragment , default , fragmentEncode , fragmentDecode , mutate
+
 -}
 
 import Dict exposing (..)
@@ -60,7 +62,7 @@ entityName =
 
 
 {-| Starting point for all Entity Fragments
-    since events are applied one at a time to build the final subSet entity
+since events are applied one at a time to build the final subSet entity
 -}
 defaultFragment : Fragment
 defaultFragment =
@@ -100,6 +102,7 @@ default =
 
 
 {-|
+
     Person's name.
 -}
 type alias Name =
@@ -110,6 +113,7 @@ type alias Name =
 
 
 {-|
+
     Default Person's name.
 -}
 defaultName : Name
@@ -121,6 +125,7 @@ defaultName =
 
 
 {-|
+
     Name encode.
 -}
 nameEncode : Name -> JE.Value
@@ -133,6 +138,7 @@ nameEncode name =
 
 
 {-|
+
     Name decoder.
 -}
 nameDecoder : JD.Decoder Name
@@ -148,6 +154,7 @@ nameDecoder =
 
 
 {-|
+
     Encode fragment.
 -}
 fragmentEncode : Fragment -> String
@@ -164,6 +171,7 @@ fragmentEncode person =
 
 
 {-|
+
     Decode fragment.
 -}
 fragmentDecode : String -> Result String Fragment
@@ -180,11 +188,15 @@ fragmentDecode json =
 
 
 {-|
+
     Mutate the Fragment based on an event.
 -}
 mutate : MutateCascadingDeleteFunction Fragment
-mutate event entity =
+mutate eventRecord entity =
     let
+        event =
+            eventRecord.event
+
         decodeName event =
             getConvertedValue (JD.decodeString nameDecoder) event
 

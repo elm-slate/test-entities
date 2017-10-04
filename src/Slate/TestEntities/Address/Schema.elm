@@ -6,9 +6,11 @@ module Slate.TestEntities.Address.Schema
         )
 
 {-|
+
     Address Schema.
 
 @docs entityName, schema , properties
+
 -}
 
 import Slate.Common.Schema exposing (..)
@@ -22,6 +24,7 @@ entityName =
 
 
 {-|
+
     Address Schema.
 -}
 schema : EntitySchema
@@ -32,8 +35,11 @@ schema =
 
 
 {-|
+
     Address Properties.
 -}
 properties : List PropertySchema
 properties =
-    List.map SinglePropertySchema [ "street", "city", "state", "zip" ]
+    List.concat
+        [ List.map ((|>) noValidationSingleProperty << SinglePropertySchema) [ "street", "city", "state", "zip" ]
+        ]

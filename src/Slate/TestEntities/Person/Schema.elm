@@ -6,9 +6,11 @@ module Slate.TestEntities.Person.Schema
         )
 
 {-|
+
     Person Schema.
 
 @docs entityName, schema , properties
+
 -}
 
 import Slate.Common.Schema exposing (..)
@@ -23,6 +25,7 @@ entityName =
 
 
 {-|
+
     Person Schema.
 -}
 schema : EntitySchema
@@ -33,13 +36,14 @@ schema =
 
 
 {-|
+
     Person Properties.
 -}
 properties : List PropertySchema
 properties =
     List.concat
-        [ List.map SinglePropertySchema [ "name", "age" ]
-        , List.map MultiplePropertySchema [ "aliases" ]
+        [ List.map ((|>) noValidationSingleProperty << SinglePropertySchema) [ "name", "age" ]
+        , List.map ((|>) noValidationMultipleProperty << MultiplePropertySchema) [ "aliases" ]
         , [ SingleRelationshipSchema "address" Address.schema True ]
         , [ MultipleRelationshipSchema "oldAddresses" Address.schema True ]
         ]
